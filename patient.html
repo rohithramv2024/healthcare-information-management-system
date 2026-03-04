@@ -5,28 +5,256 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Patient — HIMS</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="patient.css" />
 </head>
 <body>
-  <div class="app-layout">
 
-    <aside class="sidebar">
-      <div class="sidebar-brand">HIMS</div>
-      <div class="sidebar-role">Patient</div>
-      <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link">Appointments</a>
-        <a href="#" class="sidebar-link">Billing</a>
-      </nav>
-      <div class="sidebar-footer">
-        <a href="role.html"  class="sidebar-link">Switch Role</a>
-        <a href="index.html" class="sidebar-link">Home</a>
+  <!-- TOP NAVBAR -->
+  <nav class="top-navbar">
+    <div class="navbar-brand">HIMS — <span id="navbar-role">Patient</span></div>
+    <div class="navbar-links">
+      <a href="role.html"  class="nav-btn">Switch Role</a>
+      <a href="index.html" class="nav-btn">Home</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <h1 class="module-title">Patient Dashboard</h1>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="personal-info">Personal Info</button>
+      <button class="tab-btn" data-tab="assigned-doctor">Assigned Doctor</button>
+      <button class="tab-btn" data-tab="appointments">Appointments</button>
+      <button class="tab-btn" data-tab="medical-records">Medical Records</button>
+      <button class="tab-btn" data-tab="billing">Billing</button>
+    </div>
+
+    <!-- PERSONAL INFO -->
+    <div class="tab-content active" id="personal-info">
+      <h2>Personal Information</h2>
+      <div class="info-card">
+        <div class="info-row"><span class="info-label">Full Name</span><span class="info-value">John Smith</span></div>
+        <div class="info-row"><span class="info-label">Age</span><span class="info-value">45</span></div>
+        <div class="info-row"><span class="info-label">Gender</span><span class="info-value">Male</span></div>
+        <div class="info-row"><span class="info-label">Date of Birth</span><span class="info-value">12 March 1980</span></div>
+        <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+1 800 555 0101</span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value">john.smith@email.com</span></div>
+        <div class="info-row"><span class="info-label">Address</span><span class="info-value">12 Elm Street, San Francisco, CA</span></div>
+        <div class="info-row"><span class="info-label">Blood Group</span><span class="info-value">O+</span></div>
+        <div class="info-row"><span class="info-label">Emergency Contact</span><span class="info-value">Jane Smith — +1 800 555 0202</span></div>
       </div>
-    </aside>
+    </div>
 
-    <main class="main-content">
-      <h1>Patient Dashboard</h1>
-    </main>
+    <!-- ASSIGNED DOCTOR -->
+    <div class="tab-content" id="assigned-doctor">
+      <h2>Assigned Doctor</h2>
+      <div class="info-card">
+        <div class="info-row"><span class="info-label">Name</span><span class="info-value">Dr. Sarah Lee</span></div>
+        <div class="info-row"><span class="info-label">Specialty</span><span class="info-value">General Physician</span></div>
+        <div class="info-row"><span class="info-label">Department</span><span class="info-value">Internal Medicine</span></div>
+        <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+1 800 555 0303</span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value">dr.lee@hims.org</span></div>
+        <div class="info-row"><span class="info-label">Available Days</span><span class="info-value">Monday, Wednesday, Friday</span></div>
+        <div class="info-row"><span class="info-label">Clinic Room</span><span class="info-value">Room 204, Block B</span></div>
+      </div>
+    </div>
 
-  </div>
+    <!-- APPOINTMENTS -->
+    <div class="tab-content" id="appointments">
+      <h2>Appointments</h2>
+
+      <h3 class="sub-heading">Upcoming Appointments</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor</th>
+            <th>Reason</th>
+            <th>Complaints / Symptoms</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>05 Mar 2026</td>
+            <td>09:00 AM</td>
+            <td>Dr. Lee</td>
+            <td>Follow-up</td>
+            <td>Mild chest discomfort, fatigue</td>
+            <td>Confirmed</td>
+          </tr>
+          <tr>
+            <td>18 Mar 2026</td>
+            <td>11:00 AM</td>
+            <td>Dr. Patel</td>
+            <td>Lab Review</td>
+            <td>None</td>
+            <td>Pending</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">Past Appointments</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor</th>
+            <th>Reason</th>
+            <th>Complaints / Symptoms</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20 Feb 2026</td>
+            <td>10:00 AM</td>
+            <td>Dr. Lee</td>
+            <td>Consultation</td>
+            <td>Headache, high BP</td>
+            <td>Completed</td>
+          </tr>
+          <tr>
+            <td>10 Jan 2026</td>
+            <td>02:00 PM</td>
+            <td>Dr. Khan</td>
+            <td>Check-up</td>
+            <td>Routine check</td>
+            <td>Completed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MEDICAL RECORDS -->
+    <div class="tab-content" id="medical-records">
+      <h2>Medical Records</h2>
+
+      <h3 class="sub-heading">Diagnosis History</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Diagnosis</th>
+            <th>Doctor</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20 Feb 2026</td>
+            <td>Hypertension</td>
+            <td>Dr. Lee</td>
+            <td>Blood pressure elevated. Monitor weekly.</td>
+          </tr>
+          <tr>
+            <td>10 Jan 2026</td>
+            <td>Routine Check</td>
+            <td>Dr. Khan</td>
+            <td>All vitals normal.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">Prescriptions</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Medicine</th>
+            <th>Dosage</th>
+            <th>Duration</th>
+            <th>Doctor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20 Feb 2026</td>
+            <td>Amlodipine</td>
+            <td>5mg once daily</td>
+            <td>30 days</td>
+            <td>Dr. Lee</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-heading">Lab Results</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Test</th>
+            <th>Result</th>
+            <th>Normal Range</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>18 Feb 2026</td>
+            <td>Blood Pressure</td>
+            <td>145/95 mmHg</td>
+            <td>120/80 mmHg</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td>18 Feb 2026</td>
+            <td>Blood Sugar (Fasting)</td>
+            <td>98 mg/dL</td>
+            <td>70-100 mg/dL</td>
+            <td>Normal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BILLING -->
+    <div class="tab-content" id="billing">
+      <h2>Billing &amp; Payments</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Invoice ID</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INV-101</td>
+            <td>20 Feb 2026</td>
+            <td>Consultation — Dr. Lee</td>
+            <td>$80.00</td>
+            <td class="status-paid">Paid</td>
+          </tr>
+          <tr>
+            <td>INV-102</td>
+            <td>18 Feb 2026</td>
+            <td>Lab Tests</td>
+            <td>$150.00</td>
+            <td class="status-unpaid">Unpaid</td>
+          </tr>
+          <tr>
+            <td>INV-103</td>
+            <td>10 Jan 2026</td>
+            <td>Routine Check-up</td>
+            <td>$60.00</td>
+            <td class="status-paid">Paid</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script src="dashboard.js"></script>
+  <script src="patient.js"></script>
 </body>
 </html>
