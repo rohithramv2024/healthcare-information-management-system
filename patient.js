@@ -2,23 +2,32 @@
 // patient.js — Patient module tab switching
 // =============================================
 
-
-// Grab all tab buttons and all tab content sections
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+var tabBtns     = document.querySelectorAll('.tab-btn');
+var tabContents = document.querySelectorAll('.tab-content');
 
 tabBtns.forEach(function(btn) {
   btn.addEventListener('click', function() {
 
-    // Remove active from all buttons and contents
-    tabBtns.forEach(function(b) { b.classList.remove('active'); });
-    tabContents.forEach(function(c) { c.classList.remove('active'); });
+    // Hide all content sections
+    tabContents.forEach(function(content) {
+      content.style.display = 'none';
+    });
 
-    // Add active to the clicked button
-    btn.classList.add('active');
+    // Reset all button styles
+    tabBtns.forEach(function(b) {
+      b.style.color        = '#666';
+      b.style.borderBottom = '3px solid transparent';
+      b.style.fontWeight   = 'normal';
+    });
+
+    // Highlight the clicked button
+    btn.style.color        = '#0066cc';
+    btn.style.borderBottom = '3px solid #0066cc';
+    btn.style.fontWeight   = 'bold';
 
     // Show the matching content section
-    const target = btn.getAttribute('data-tab');
-    document.getElementById(target).classList.add('active');
+    var target = btn.getAttribute('data-tab');
+    document.getElementById(target).style.display = 'block';
+
   });
 });
