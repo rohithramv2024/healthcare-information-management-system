@@ -24,7 +24,6 @@ const roleModules = {
 
 
 // --- READ ROLE FROM SESSIONSTORAGE ---
-// Default to 'Admin' during development if no role is saved yet
 const role = sessionStorage.getItem('selectedRole') || 'Admin';
 
 // Set the role label in the sidebar
