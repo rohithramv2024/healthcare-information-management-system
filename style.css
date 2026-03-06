@@ -202,7 +202,7 @@ section {
 }
 
 
-/* Aster-style Card */
+/* Card */
 .feature-card {
     position: relative;
     min-width: 420px;
@@ -229,14 +229,15 @@ section {
     top:0;
     left:0;
     width:100%;
+    background:rgb(1, 1, 1);
     height:100%;
-    background:black;
-    opacity:0;
+    opacity:0.6;
     transition:0.3s;
 }
 
 .feature-card:hover .overlay{
-    opacity:0.7;   /* darkness level */
+    opacity:0.9;   /* darkness level */
+    background: linear-gradient( #0c5857 ,  #050c0b);
 }
 
 /* Text on Image */
@@ -246,7 +247,7 @@ section {
     left: 25px;
     right: 25px;
     z-index: 2;
-    background-blend-mode: ;
+    background-blend-mode: exclusion;
 }
 
 .card-content h2 {
