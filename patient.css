@@ -191,3 +191,55 @@
 /* =============================================
    END
 ============================================= */
+
+
+/* --- BOOKING FORM --- */
+#booking-form {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px 24px;
+  max-width: 500px;
+  margin: 16px 0 24px;
+}
+
+.form-field {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* --- CANCEL BUTTON --- */
+.btn-cancel {
+  background-color: #fff;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* --- BOOK BUTTON SPACING --- */
+#show-form-btn {
+  margin-bottom: 16px;
+}

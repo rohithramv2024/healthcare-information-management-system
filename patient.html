@@ -44,7 +44,7 @@
         <div class="info-row"><span class="info-label">Email</span><span class="info-value">john.smith@email.com</span></div>
         <div class="info-row"><span class="info-label">Address</span><span class="info-value">12 Elm Street, San Francisco, CA</span></div>
         <div class="info-row"><span class="info-label">Blood Group</span><span class="info-value">O+</span></div>
-        <div class="info-row"><span class="info-label">Emergency Contact</span><span class="info-value">Jane Smith — +1 800 555 0202</span></div>
+        <div class="info-row"><span class="info-label">Emergency Contact</span><span class="info-value">Jane Smith +1 800 555 0202</span></div>
       </div>
     </div>
 
@@ -66,19 +66,55 @@
     <div class="tab-content" id="appointments" style="display:none;">
       <h2>Appointments</h2>
 
+      <button id="show-form-btn" class="btn btn-primary">+ Book Appointment</button>
+
+      <div id="booking-form" style="display:none;">
+        <h3 class="sub-heading">New Appointment</h3>
+        <div class="form-field">
+          <label class="form-label" for="appt-date">Date</label>
+          <input type="date" id="appt-date" class="form-input" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="appt-time">Time</label>
+          <input type="time" id="appt-time" class="form-input" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="appt-doctor">Doctor</label>
+          <select id="appt-doctor" class="form-input">
+            <option value="">Select a doctor</option>
+            <option value="Dr. Lee">Dr. Lee</option>
+            <option value="Dr. Patel">Dr. Patel</option>
+            <option value="Dr. Khan">Dr. Khan</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="appt-reason">Reason</label>
+          <input type="text" id="appt-reason" class="form-input" placeholder="e.g. Follow-up" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="appt-symptoms">Complaints / Symptoms</label>
+          <input type="text" id="appt-symptoms" class="form-input" placeholder="e.g. Headache, fatigue" />
+        </div>
+        <p id="appt-error" style="color:#dc3545; display:none;">Please fill in all fields.</p>
+        <button id="submit-appt-btn" class="btn btn-primary">Confirm Booking</button>
+        <button id="cancel-form-btn" class="btn btn-secondary">Cancel</button>
+      </div>
+
       <h3 class="sub-heading">Upcoming Appointments</h3>
       <table class="data-table">
         <thead>
           <tr>
-            <th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th>
+            <th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th><th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="upcoming-tbody">
           <tr>
             <td>05 Mar 2026</td><td>09:00 AM</td><td>Dr. Lee</td><td>Follow-up</td><td>Mild chest discomfort, fatigue</td><td>Confirmed</td>
+            <td><button class="btn-cancel">Cancel</button></td>
           </tr>
           <tr>
             <td>18 Mar 2026</td><td>11:00 AM</td><td>Dr. Patel</td><td>Lab Review</td><td>None</td><td>Pending</td>
+            <td><button class="btn-cancel">Cancel</button></td>
           </tr>
         </tbody>
       </table>
@@ -140,13 +176,13 @@
 
     <!-- BILLING -->
     <div class="tab-content" id="billing" style="display:none;">
-      <h2>Billing &amp; Payments</h2>
+      <h2>Billing and Payments</h2>
       <table class="data-table">
         <thead>
           <tr><th>Invoice ID</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>INV-101</td><td>20 Feb 2026</td><td>Consultation — Dr. Lee</td><td>$80.00</td><td class="status-paid">Paid</td></tr>
+          <tr><td>INV-101</td><td>20 Feb 2026</td><td>Consultation Dr. Lee</td><td>$80.00</td><td class="status-paid">Paid</td></tr>
           <tr><td>INV-102</td><td>18 Feb 2026</td><td>Lab Tests</td><td>$150.00</td><td class="status-unpaid">Unpaid</td></tr>
           <tr><td>INV-103</td><td>10 Jan 2026</td><td>Routine Check-up</td><td>$60.00</td><td class="status-paid">Paid</td></tr>
         </tbody>
@@ -156,5 +192,6 @@
   </main>
 
   <script src="patient.js"></script>
+
 </body>
 </html>

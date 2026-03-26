@@ -1,33 +1,196 @@
 // =============================================
-// patient.js — Patient module tab switching
+// patient.js — Patient module
 // =============================================
+
+
+// --- TAB SWITCHING ---
 
 var tabBtns     = document.querySelectorAll('.tab-btn');
 var tabContents = document.querySelectorAll('.tab-content');
 
-tabBtns.forEach(function(btn) {
-  btn.addEventListener('click', function() {
+for (var i = 0; i < tabBtns.length; i++) {
+  tabBtns[i].addEventListener('click', function() {
 
-    // Hide all content sections
-    tabContents.forEach(function(content) {
-      content.style.display = 'none';
-    });
+    for (var j = 0; j < tabContents.length; j++) {
+      tabContents[j].style.display = 'none';
+    }
 
-    // Reset all button styles
-    tabBtns.forEach(function(b) {
-      b.style.color        = '#666';
-      b.style.borderBottom = '3px solid transparent';
-      b.style.fontWeight   = 'normal';
-    });
+    for (var k = 0; k < tabBtns.length; k++) {
+      tabBtns[k].style.color        = '#666';
+      tabBtns[k].style.borderBottom = '3px solid transparent';
+      tabBtns[k].style.fontWeight   = 'normal';
+    }
 
-    // Highlight the clicked button
-    btn.style.color        = '#0066cc';
-    btn.style.borderBottom = '3px solid #0066cc';
-    btn.style.fontWeight   = 'bold';
+    this.style.color        = '#0066cc';
+    this.style.borderBottom = '3px solid #0066cc';
+    this.style.fontWeight   = 'bold';
 
-    // Show the matching content section
-    var target = btn.getAttribute('data-tab');
+    var target = this.getAttribute('data-tab');
     document.getElementById(target).style.display = 'block';
 
   });
+}
+
+
+// --- LOCALSTORAGE HELPERS ---
+
+function getSavedAppointments() {
+  var data = localStorage.getItem('hims_appointments');
+  if (data) {
+    return JSON.parse(data);
+  }
+  return [];
+}
+
+function saveAppointments(appointments) {
+  localStorage.setItem('hims_appointments', JSON.stringify(appointments));
+}
+
+
+// --- TBODY REFERENCE ---
+
+var tbody = document.getElementById('upcoming-tbody');
+
+
+// --- CANCEL FOR HARDCODED ROWS (not in localStorage, just remove from DOM) ---
+
+var hardcodedRows = tbody.querySelectorAll('tr');
+
+for (var h = 0; h < hardcodedRows.length; h++) {
+  var cancelBtn = hardcodedRows[h].querySelector('.btn-cancel');
+  cancelBtn.addEventListener('click', function() {
+    var row = this.parentNode.parentNode;
+    tbody.removeChild(row);
+  });
+}
+
+
+// --- LOAD SAVED APPOINTMENTS FROM LOCALSTORAGE ---
+
+function loadAppointments() {
+  var appointments = getSavedAppointments();
+  for (var i = 0; i < appointments.length; i++) {
+    addRowToTable(appointments[i], i);
+  }
+}
+
+// Add a single row to the table with a cancel button
+function addRowToTable(appt, index) {
+  var newRow = document.createElement('tr');
+  newRow.setAttribute('data-index', index);
+
+  newRow.innerHTML =
+    '<td>' + appt.date     + '</td>' +
+    '<td>' + appt.time     + '</td>' +
+    '<td>' + appt.doctor   + '</td>' +
+    '<td>' + appt.reason   + '</td>' +
+    '<td>' + appt.symptoms + '</td>' +
+    '<td>Pending</td>'               +
+    '<td><button class="btn-cancel">Cancel</button></td>';
+
+  tbody.appendChild(newRow);
+
+  // Cancel — removes from localStorage and from DOM
+  var cancelBtn = newRow.querySelector('.btn-cancel');
+  cancelBtn.addEventListener('click', function() {
+    var idx          = parseInt(newRow.getAttribute('data-index'));
+    var appointments = getSavedAppointments();
+    appointments.splice(idx, 1);
+    saveAppointments(appointments);
+    tbody.removeChild(newRow);
+    reindexRows();
+  });
+}
+
+// After a cancel, update data-index on remaining saved rows
+function reindexRows() {
+  var rows = tbody.querySelectorAll('tr[data-index]');
+  for (var i = 0; i < rows.length; i++) {
+    rows[i].setAttribute('data-index', i);
+  }
+}
+
+loadAppointments();
+
+
+// --- SHOW / HIDE BOOKING FORM ---
+
+var showFormBtn   = document.getElementById('show-form-btn');
+var bookingForm   = document.getElementById('booking-form');
+var cancelFormBtn = document.getElementById('cancel-form-btn');
+
+showFormBtn.addEventListener('click', function() {
+  bookingForm.style.display = 'block';
+  showFormBtn.style.display = 'none';
 });
+
+cancelFormBtn.addEventListener('click', function() {
+  bookingForm.style.display = 'none';
+  showFormBtn.style.display = 'inline-block';
+  clearForm();
+});
+
+
+// --- BOOK APPOINTMENT ---
+
+var submitBtn = document.getElementById('submit-appt-btn');
+var apptError = document.getElementById('appt-error');
+
+submitBtn.addEventListener('click', function() {
+
+  var date     = document.getElementById('appt-date').value;
+  var time     = document.getElementById('appt-time').value;
+  var doctor   = document.getElementById('appt-doctor').value;
+  var reason   = document.getElementById('appt-reason').value.trim();
+  var symptoms = document.getElementById('appt-symptoms').value.trim();
+
+  if (date === '' || time === '' || doctor === '' || reason === '' || symptoms === '') {
+    apptError.style.display = 'block';
+    return;
+  }
+
+  apptError.style.display = 'none';
+
+  var newAppt = {
+    date:     date,
+    time:     formatTime(time),
+    doctor:   doctor,
+    reason:   reason,
+    symptoms: symptoms
+  };
+
+  // Save to localStorage
+  var appointments = getSavedAppointments();
+  appointments.push(newAppt);
+  saveAppointments(appointments);
+
+  // Add row to table
+  addRowToTable(newAppt, appointments.length - 1);
+
+  // Reset form
+  bookingForm.style.display = 'none';
+  showFormBtn.style.display = 'inline-block';
+  clearForm();
+});
+
+
+// --- HELPERS ---
+
+function clearForm() {
+  document.getElementById('appt-date').value     = '';
+  document.getElementById('appt-time').value     = '';
+  document.getElementById('appt-doctor').value   = '';
+  document.getElementById('appt-reason').value   = '';
+  document.getElementById('appt-symptoms').value = '';
+  apptError.style.display = 'none';
+}
+
+function formatTime(time) {
+  var parts  = time.split(':');
+  var hours  = parseInt(parts[0]);
+  var mins   = parts[1];
+  var period = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  if (hours === 0) { hours = 12; }
+  return hours + ':' + mins + ' ' + period;
+}
