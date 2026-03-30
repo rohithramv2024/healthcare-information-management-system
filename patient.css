@@ -1,5 +1,7 @@
 /* =============================================
    patient.css — patient.html only
+   Uses only CSS properties covered in the
+   course PDF (Prof. Jayakumar Sadhasivam, VIT)
 ============================================= */
 
 
@@ -7,15 +9,16 @@
 .top-navbar {
   background-color: #1a1e2e;
   padding: 14px 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .navbar-brand {
-  color: #fff;
+  color: #ffffff;
   font-size: 16px;
   font-weight: bold;
+  font-family: "Arial", sans-serif;
+  float: left;
 }
 
 .navbar-brand span {
@@ -24,76 +27,97 @@
 }
 
 .navbar-links {
-  display: flex;
-  gap: 12px;
+  float: right;
 }
 
 .nav-btn {
-  color: #ccc;
+  color: #cccccc;
   text-decoration: none;
   font-size: 14px;
+  font-family: "Arial", sans-serif;
   padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 4px;
-  transition: background-color 0.15s, color 0.15s;
+  border: 1px solid #555555;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.nav-btn:link {
+  color: #cccccc;
+}
+
+.nav-btn:visited {
+  color: #cccccc;
 }
 
 .nav-btn:hover {
-  background-color: rgba(255,255,255,0.1);
-  color: #fff;
+  background-color: #2a5fa8;
+  color: #ffffff;
   text-decoration: none;
+}
+
+.nav-btn:active {
+  background-color: #1a3f78;
+  color: #ffffff;
 }
 
 
 /* --- MAIN CONTENT --- */
 .main-content {
   padding: 28px;
-  background-color: #f5f7fa;
-  min-height: calc(100vh - 50px);
+  background-color: #f0f7fa;
+  min-height: 90%;
 }
 
 .module-title {
   font-size: 22px;
+  font-family: "Arial", sans-serif;
   color: #1a1e2e;
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 
 /* --- TAB BAR --- */
 .tab-bar {
-  display: flex;
-  gap: 4px;
-  border-bottom: 2px solid #e0e0e0;
+  overflow: hidden;
+  border-bottom: 2px solid #0891b2;
   margin-bottom: 0;
+  background-color: #e8f4f8;
 }
 
 .tab-btn {
   padding: 10px 18px;
   font-size: 14px;
+  font-family: "Arial", sans-serif;
   font-weight: 500;
-  background: none;
+  background-color: transparent;
   border: none;
   border-bottom: 3px solid transparent;
   cursor: pointer;
-  color: #666;
-  margin-bottom: -2px;
+  color: #555555;
+  float: left;
 }
 
 .tab-btn:hover {
-  color: #0066cc;
+  color: #0891b2;
+  background-color: #d0ebf5;
 }
 
 .tab-btn.active {
-  color: #0066cc;
-  border-bottom: 3px solid #0066cc;
-  font-weight: 600;
+  color: #0e7490;
+  border-bottom: 3px solid #0891b2;
+  font-weight: bold;
+  background-color: #c0e4f0;
 }
 
 
 /* --- TAB CONTENT --- */
 .tab-content {
   display: none;
-  padding-top: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #c0dce8;
+  border-top: none;
 }
 
 .tab-content.active {
@@ -102,46 +126,59 @@
 
 .tab-content h2 {
   font-size: 18px;
-  color: #1a1e2e;
-  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+  color: #0d1b3e;
+  margin-bottom: 16px;
+  font-weight: bold;
+  border-bottom: 2px solid #0891b2;
+  padding-bottom: 8px;
 }
 
 .sub-heading {
-  font-size: 15px;
-  color: #444;
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+  color: #0e7490;
   margin: 24px 0 10px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 
 /* --- INFO CARD --- */
 .info-card {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 8px 0;
-  max-width: 600px;
+  background-color: #ffffff;
+  border: 1px solid #a8d4e0;
+  width: 600px;
 }
 
 .info-row {
-  display: flex;
   padding: 10px 20px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #d8edf5;
   font-size: 14px;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
 }
 
 .info-row:last-child {
   border-bottom: none;
 }
 
+.info-row:hover {
+  background-color: #eaf5fa;
+}
+
 .info-label {
   width: 180px;
-  color: #888;
-  font-weight: 600;
-  flex-shrink: 0;
+  color: #4a7a90;
+  font-weight: bold;
+  font-size: 13px;
+  float: left;
 }
 
 .info-value {
-  color: #333;
+  color: #1a1e2e;
+  font-size: 14px;
+  margin-left: 190px;
 }
 
 
@@ -150,22 +187,26 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  font-family: "Arial", sans-serif;
   margin-bottom: 8px;
+  border: 1px solid #a8d4e0;
 }
 
 .data-table th {
   text-align: left;
   padding: 10px 14px;
-  background-color: #f0f4f8;
-  color: #555;
-  font-weight: 600;
-  border-bottom: 2px solid #e0e0e0;
+  background-color: #1a3a6e;
+  color: #e0f4fa;
+  font-weight: bold;
+  border-bottom: 2px solid #0891b2;
+  font-size: 13px;
+  text-transform: uppercase;
 }
 
 .data-table td {
   padding: 10px 14px;
-  border-bottom: 1px solid #eee;
-  color: #333;
+  border-bottom: 1px solid #d0e8f0;
+  color: #2a3a5a;
 }
 
 .data-table tr:last-child td {
@@ -173,33 +214,32 @@
 }
 
 .data-table tr:hover td {
-  background-color: #f9fbff;
+  background-color: #ddf0f8;
+  color: #0d1b3e;
 }
 
 
 /* --- BILLING STATUS --- */
 .status-paid {
-  color: #198754;
-  font-weight: 600;
+  color: #0e7490;
+  font-weight: bold;
 }
 
 .status-unpaid {
-  color: #dc3545;
-  font-weight: 600;
+  color: #b91c3c;
+  font-weight: bold;
 }
-
-/* =============================================
-   END
-============================================= */
 
 
 /* --- BOOKING FORM --- */
 #booking-form {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  background-color: #eaf5fa;
+  border-top: 1px solid #a8d4e0;
+  border-right: 1px solid #a8d4e0;
+  border-bottom: 1px solid #a8d4e0;
+  border-left: 4px solid #0891b2;
   padding: 20px 24px;
-  max-width: 500px;
+  width: 500px;
   margin: 16px 0 24px;
 }
 
@@ -210,36 +250,85 @@
 .form-label {
   display: block;
   font-size: 13px;
-  font-weight: 600;
-  color: #444;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  color: #0e7490;
   margin-bottom: 4px;
+  text-transform: uppercase;
 }
 
 .form-input {
   width: 100%;
   padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #7ab8cc;
   font-size: 14px;
+  font-family: "Arial", sans-serif;
+  color: #1a1e2e;
+  background-color: #ffffff;
+}
+
+
+/* --- BUTTONS --- */
+.btn,
+.btn-primary {
+  display: inline-block;
+  background-color: #0891b2;
+  color: #ffffff;
+  border: none;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn-primary:hover {
+  background-color: #0e7490;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #4a7a90;
+  border: 1px solid #7ab8cc;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-family: "Arial", sans-serif;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.btn-secondary:hover {
+  background-color: #d0ebf5;
+  color: #0e7490;
 }
 
 /* --- CANCEL BUTTON --- */
 .btn-cancel {
-  background-color: #fff;
-  border: 1px solid #dc3545;
-  color: #dc3545;
+  background-color: #ffffff;
+  border: 1px solid #b91c3c;
+  color: #b91c3c;
   padding: 4px 10px;
-  border-radius: 4px;
   font-size: 13px;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .btn-cancel:hover {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #b91c3c;
+  color: #ffffff;
 }
 
 /* --- BOOK BUTTON SPACING --- */
 #show-form-btn {
   margin-bottom: 16px;
 }
+
+/* =============================================
+   END
+============================================= */
