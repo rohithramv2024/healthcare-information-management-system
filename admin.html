@@ -5,26 +5,247 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin — HIMS</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
-  <div class="app-layout">
 
-    <aside class="sidebar">
-      <div class="sidebar-brand">HIMS</div>
-      <div class="sidebar-role" id="sidebar-role"></div>
-      <nav class="sidebar-nav" id="sidebar-nav"></nav>
-      <div class="sidebar-footer">
-        <a href="role.html"  class="sidebar-link">Switch Role</a>
-        <a href="index.html" class="sidebar-link">Home</a>
+  <!-- TOP NAVBAR -->
+  <nav class="top-navbar">
+    <div class="navbar-brand">HIMS — Admin</div>
+    <div class="navbar-links">
+      <button id="reset-btn" class="nav-btn nav-btn-reset">Reset Data</button>
+      <a href="role.html"  class="nav-btn">Switch Role</a>
+      <a href="index.html" class="nav-btn">Home</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <h1 class="module-title">Admin Dashboard</h1>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+      <button class="tab-btn" data-tab="overview" style="color:#0066cc; border-bottom:3px solid #0066cc; font-weight:bold;">Overview</button>
+      <button class="tab-btn" data-tab="manage-patients">Manage Patients</button>
+      <button class="tab-btn" data-tab="manage-doctors">Manage Doctors</button>
+      <button class="tab-btn" data-tab="billing">Billing</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="tab-content" id="overview" style="display:block;">
+      <h2>Overview</h2>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-patients">0</div>
+          <div class="stat-label">Total Patients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-doctors">0</div>
+          <div class="stat-label">Total Doctors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-invoices">0</div>
+          <div class="stat-label">Total Invoices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-revenue">$0</div>
+          <div class="stat-label">Total Revenue</div>
+        </div>
       </div>
-    </aside>
+    </div>
 
-    <main class="main-content">
-      <h1>Admin Dashboard</h1>
-    </main>
+    <!-- MANAGE PATIENTS -->
+    <div class="tab-content" id="manage-patients" style="display:none;">
+      <h2>Manage Patients</h2>
 
-  </div>
-  <script src="dashboard.js"></script>
+      <button id="show-patient-form-btn" class="btn btn-primary">+ Add Patient</button>
+
+      <div id="patient-form" style="display:none;">
+        <h3 class="sub-heading">New Patient</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="p-name">Full Name</label>
+            <input type="text" id="p-name" class="form-input" placeholder="e.g. John Smith" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="p-age">Age</label>
+            <input type="number" id="p-age" class="form-input" placeholder="e.g. 30" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="p-gender">Gender</label>
+            <select id="p-gender" class="form-input">
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="p-blood">Blood Group</label>
+            <select id="p-blood" class="form-input">
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="p-phone">Phone</label>
+            <input type="text" id="p-phone" class="form-input" placeholder="e.g. +1 800 555 0100" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="p-doctor">Assigned Doctor</label>
+            <select id="p-doctor" class="form-input">
+              <option value="">Select</option>
+              <option value="Dr. Lee">Dr. Lee</option>
+              <option value="Dr. Patel">Dr. Patel</option>
+              <option value="Dr. Khan">Dr. Khan</option>
+            </select>
+          </div>
+        </div>
+        <p id="patient-error" style="color:#dc3545; display:none;">Please fill in all fields.</p>
+        <button id="submit-patient-btn" class="btn btn-primary">Save Patient</button>
+        <button id="cancel-patient-btn" class="btn btn-secondary">Cancel</button>
+      </div>
+
+      <h3 class="sub-heading">All Patients</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Patient ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Blood Group</th><th>Phone</th><th>Doctor</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="patients-tbody">
+          <tr data-patient-id="P001"><td>P001</td><td>John Smith</td><td>45</td><td>Male</td><td>O+</td><td>+1 800 555 0101</td><td>Dr. Lee</td><td><button class="btn-delete">Delete</button></td></tr>
+          <tr data-patient-id="P002"><td>P002</td><td>Mary Johnson</td><td>32</td><td>Female</td><td>A+</td><td>+1 800 555 0202</td><td>Dr. Lee</td><td><button class="btn-delete">Delete</button></td></tr>
+          <tr data-patient-id="P003"><td>P003</td><td>Alan Brown</td><td>60</td><td>Male</td><td>B-</td><td>+1 800 555 0303</td><td>Dr. Patel</td><td><button class="btn-delete">Delete</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MANAGE DOCTORS -->
+    <div class="tab-content" id="manage-doctors" style="display:none;">
+      <h2>Manage Doctors</h2>
+
+      <button id="show-doctor-form-btn" class="btn btn-primary">+ Add Doctor</button>
+
+      <div id="doctor-form" style="display:none;">
+        <h3 class="sub-heading">New Doctor</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="d-name">Full Name</label>
+            <input type="text" id="d-name" class="form-input" placeholder="e.g. Dr. Sarah Lee" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="d-specialty">Specialty</label>
+            <input type="text" id="d-specialty" class="form-input" placeholder="e.g. Cardiology" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="d-department">Department</label>
+            <input type="text" id="d-department" class="form-input" placeholder="e.g. Internal Medicine" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="d-phone">Phone</label>
+            <input type="text" id="d-phone" class="form-input" placeholder="e.g. +1 800 555 0100" />
+          </div>
+        </div>
+        <p id="doctor-error" style="color:#dc3545; display:none;">Please fill in all fields.</p>
+        <button id="submit-doctor-btn" class="btn btn-primary">Save Doctor</button>
+        <button id="cancel-doctor-btn" class="btn btn-secondary">Cancel</button>
+      </div>
+
+      <h3 class="sub-heading">All Doctors</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Doctor ID</th><th>Name</th><th>Specialty</th><th>Department</th><th>Phone</th></tr>
+        </thead>
+        <tbody id="doctors-tbody">
+          <tr><td>D001</td><td>Dr. Sarah Lee</td><td>General Physician</td><td>Internal Medicine</td><td>+1 800 555 0401</td></tr>
+          <tr><td>D002</td><td>Dr. Raj Patel</td><td>Cardiologist</td><td>Cardiology</td><td>+1 800 555 0402</td></tr>
+          <tr><td>D003</td><td>Dr. Amir Khan</td><td>Orthopaedist</td><td>Orthopaedics</td><td>+1 800 555 0403</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BILLING -->
+    <div class="tab-content" id="billing" style="display:none;">
+      <h2>Billing</h2>
+
+      <button id="show-invoice-form-btn" class="btn btn-primary">+ Add Invoice</button>
+
+      <div id="invoice-form" style="display:none;">
+        <h3 class="sub-heading">New Invoice</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="inv-patient">Patient</label>
+            <select id="inv-patient" class="form-input">
+              <option value="">Select</option>
+              <option value="John Smith">John Smith</option>
+              <option value="Mary Johnson">Mary Johnson</option>
+              <option value="Alan Brown">Alan Brown</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="inv-date">Date</label>
+            <input type="date" id="inv-date" class="form-input" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="inv-description">Description</label>
+            <input type="text" id="inv-description" class="form-input" placeholder="e.g. Consultation" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="inv-amount">Amount ($)</label>
+            <input type="number" id="inv-amount" class="form-input" placeholder="e.g. 100" />
+          </div>
+        </div>
+        <p id="invoice-error" style="color:#dc3545; display:none;">Please fill in all fields.</p>
+        <button id="submit-invoice-btn" class="btn btn-primary">Save Invoice</button>
+        <button id="cancel-invoice-btn" class="btn btn-secondary">Cancel</button>
+      </div>
+
+      <h3 class="sub-heading">All Invoices</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Invoice ID</th><th>Patient</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
+        </thead>
+        <tbody id="invoices-tbody">
+          <tr>
+            <td>INV-101</td><td>John Smith</td><td>20 Feb 2026</td><td>Consultation</td><td>$80.00</td>
+            <td class="status-paid" id="inv-status-101">Paid</td>
+            <td><button class="btn-toggle-status" data-inv="101" data-status="Paid">Mark Unpaid</button></td>
+          </tr>
+          <tr>
+            <td>INV-102</td><td>John Smith</td><td>18 Feb 2026</td><td>Lab Tests</td><td>$150.00</td>
+            <td class="status-unpaid" id="inv-status-102">Unpaid</td>
+            <td><button class="btn-toggle-status" data-inv="102" data-status="Unpaid">Mark Paid</button></td>
+          </tr>
+          <tr>
+            <td>INV-103</td><td>John Smith</td><td>10 Jan 2026</td><td>Routine Check-up</td><td>$60.00</td>
+            <td class="status-paid" id="inv-status-103">Paid</td>
+            <td><button class="btn-toggle-status" data-inv="103" data-status="Paid">Mark Unpaid</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="reset.js"></script>
+
 </body>
 </html>

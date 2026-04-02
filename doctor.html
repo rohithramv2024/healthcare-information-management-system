@@ -5,28 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Doctor — HIMS</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="doctor.css" />
 </head>
 <body>
-  <div class="app-layout">
 
-    <aside class="sidebar">
-      <div class="sidebar-brand">HIMS</div>
-      <div class="sidebar-role">Doctor</div>
-      <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link">Patient Records</a>
-        <a href="#" class="sidebar-link">Appointments</a>
-      </nav>
-      <div class="sidebar-footer">
-        <a href="role.html"  class="sidebar-link">Switch Role</a>
-        <a href="index.html" class="sidebar-link">Home</a>
+  <!-- TOP NAVBAR -->
+  <nav class="top-navbar">
+    <div class="navbar-brand">HIMS — Dr. Sarah Lee</div>
+    <div class="navbar-links">
+      <button id="reset-btn" class="nav-btn nav-btn-reset">Reset Data</button>
+      <a href="role.html"  class="nav-btn">Switch Role</a>
+      <a href="index.html" class="nav-btn">Home</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <h1 class="module-title">Welcome, Dr. Sarah Lee</h1>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+      <button class="tab-btn" data-tab="overview"        style="color:#0066cc; border-bottom:3px solid #0066cc; font-weight:bold;">Overview</button>
+      <button class="tab-btn" data-tab="my-patients">My Patients</button>
+      <button class="tab-btn" data-tab="appointments">Upcoming Appointments</button>
+      <button class="tab-btn" data-tab="patient-details">Patient Details</button>
+      <button class="tab-btn" data-tab="prescription">Prescription & Diagnosis</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="tab-content" id="overview" style="display:block;">
+      <h2>Overview</h2>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-total-patients">0</div>
+          <div class="stat-label">Total Patients</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-today-appointments">0</div>
+          <div class="stat-label">Today's Appointments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-pending">0</div>
+          <div class="stat-label">Pending Consultations</div>
+        </div>
       </div>
-    </aside>
+    </div>
 
-    <main class="main-content">
-      <h1>Doctor Dashboard</h1>
-    </main>
+    <!-- MY PATIENTS -->
+    <div class="tab-content" id="my-patients" style="display:none;">
+      <h2>My Patients</h2>
+      <p class="tab-hint">Click a row to view patient details.</p>
+      <table class="data-table" id="patients-table">
+        <thead>
+          <tr>
+            <th>Patient ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody id="patients-tbody">
+          <tr class="clickable-row" data-patient="P001">
+            <td>P001</td><td>John Smith</td><td>45</td><td>Male</td><td>O+</td><td>+1 800 555 0101</td>
+          </tr>
+          <tr class="clickable-row" data-patient="P002">
+            <td>P002</td><td>Mary Johnson</td><td>32</td><td>Female</td><td>A+</td><td>+1 800 555 0202</td>
+          </tr>
+          <tr class="clickable-row" data-patient="P003">
+            <td>P003</td><td>Alan Brown</td><td>60</td><td>Male</td><td>B-</td><td>+1 800 555 0303</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  </div>
+    <!-- UPCOMING APPOINTMENTS -->
+    <div class="tab-content" id="appointments" style="display:none;">
+      <h2>Upcoming Appointments</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th><th>Time</th><th>Patient</th><th>Reason</th><th>Symptoms</th><th>Status</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="appt-tbody">
+          <tr>
+            <td>05 Mar 2026</td><td>09:00 AM</td><td>John Smith</td><td>Follow-up</td><td>Mild chest discomfort</td><td id="status-0">Pending</td>
+            <td><button class="btn-status" data-row="0">Mark Complete</button></td>
+          </tr>
+          <tr>
+            <td>05 Mar 2026</td><td>11:00 AM</td><td>Mary Johnson</td><td>Consultation</td><td>Fatigue</td><td id="status-1">Pending</td>
+            <td><button class="btn-status" data-row="1">Mark Complete</button></td>
+          </tr>
+          <tr>
+            <td>18 Mar 2026</td><td>02:00 PM</td><td>Alan Brown</td><td>Lab Review</td><td>Joint pain</td><td id="status-2">Pending</td>
+            <td><button class="btn-status" data-row="2">Mark Complete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PATIENT DETAILS -->
+    <div class="tab-content" id="patient-details" style="display:none;">
+      <h2>Patient Details</h2>
+      <p class="tab-hint" id="details-hint">Select a patient from the My Patients tab or use the dropdown below.</p>
+
+      <div class="form-field" style="max-width:300px; margin-bottom:20px;">
+        <label class="form-label" for="details-dropdown">Select Patient</label>
+        <select id="details-dropdown" class="form-input">
+          <option value="">-- Select a patient --</option>
+          <option value="P001">P001 — John Smith</option>
+          <option value="P002">P002 — Mary Johnson</option>
+          <option value="P003">P003 — Alan Brown</option>
+        </select>
+      </div>
+
+      <div id="details-content" style="display:none;">
+
+        <div class="details-header">
+          <h3 id="details-name"></h3>
+          <button id="go-to-prescription" class="btn btn-primary">Add Prescription & Diagnosis</button>
+        </div>
+
+        <h3 class="sub-heading">Personal Information</h3>
+        <div class="info-card" id="details-info"></div>
+
+        <h3 class="sub-heading">Diagnosis History</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Date</th><th>Diagnosis</th><th>Notes</th></tr>
+          </thead>
+          <tbody id="details-diagnoses"></tbody>
+        </table>
+
+        <h3 class="sub-heading">Prescriptions</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Date</th><th>Medicine</th><th>Dosage</th><th>Duration</th></tr>
+          </thead>
+          <tbody id="details-prescriptions"></tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- PRESCRIPTION & DIAGNOSIS -->
+    <div class="tab-content" id="prescription" style="display:none;">
+      <h2>Prescription & Diagnosis</h2>
+      <p class="tab-hint" id="prescription-hint">Select a patient to add prescription or diagnosis.</p>
+
+      <div class="form-field" style="max-width:300px; margin-bottom:20px;">
+        <label class="form-label" for="prescription-dropdown">Select Patient</label>
+        <select id="prescription-dropdown" class="form-input">
+          <option value="">-- Select a patient --</option>
+          <option value="P001">P001 — John Smith</option>
+          <option value="P002">P002 — Mary Johnson</option>
+          <option value="P003">P003 — Alan Brown</option>
+        </select>
+      </div>
+
+      <div id="prescription-content" style="display:none;">
+
+        <h3 id="prescription-patient-name"></h3>
+
+        <h3 class="sub-heading">Add Diagnosis</h3>
+        <div class="form-field">
+          <label class="form-label" for="diag-date">Date</label>
+          <input type="date" id="diag-date" class="form-input" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="diag-text">Diagnosis</label>
+          <input type="text" id="diag-text" class="form-input" placeholder="e.g. Hypertension" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="diag-notes">Notes</label>
+          <textarea id="diag-notes" class="form-input form-textarea" rows="3" placeholder="e.g. Monitor weekly"></textarea>
+        </div>
+        <p id="diag-error" style="color:#dc3545; display:none;">Please fill in all diagnosis fields.</p>
+        <button id="submit-diag-btn" class="btn btn-primary">Save Diagnosis</button>
+        <p id="diag-success" style="color:#198754; display:none;">Diagnosis saved.</p>
+
+        <h3 class="sub-heading">Add Prescription</h3>
+        <div class="form-field">
+          <label class="form-label" for="presc-date">Date</label>
+          <input type="date" id="presc-date" class="form-input" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="presc-medicine">Medicine</label>
+          <input type="text" id="presc-medicine" class="form-input" placeholder="e.g. Amlodipine" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="presc-dosage">Dosage</label>
+          <input type="text" id="presc-dosage" class="form-input" placeholder="e.g. 5mg once daily" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="presc-duration">Duration</label>
+          <input type="text" id="presc-duration" class="form-input" placeholder="e.g. 30 days" />
+        </div>
+        <p id="presc-error" style="color:#dc3545; display:none;">Please fill in all prescription fields.</p>
+        <button id="submit-presc-btn" class="btn btn-primary">Save Prescription</button>
+        <p id="presc-success" style="color:#198754; display:none;">Prescription saved.</p>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="doctor.js"></script>
+  <script src="reset.js"></script>
 </body>
 </html>

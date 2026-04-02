@@ -9,23 +9,20 @@
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
   <nav class="top-navbar">
     <div class="navbar-brand">HIMS — Patient</div>
     <div class="navbar-links">
+      <button id="reset-btn" class="nav-btn nav-btn-reset">Reset Data</button>
       <a href="role.html"  class="nav-btn">Switch Role</a>
       <a href="index.html" class="nav-btn">Home</a>
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
   <main class="main-content">
-
     <h1 class="module-title">Patient Dashboard</h1>
 
-    <!-- TAB BAR -->
     <div class="tab-bar">
-      <button class="tab-btn" data-tab="personal-info"   style="color:#0066cc; border-bottom:3px solid #0066cc; font-weight:bold;">Personal Info</button>
+      <button class="tab-btn" data-tab="personal-info" style="color:#0066cc; border-bottom:3px solid #0066cc; font-weight:bold;">Personal Info</button>
       <button class="tab-btn" data-tab="assigned-doctor">Assigned Doctor</button>
       <button class="tab-btn" data-tab="appointments">Appointments</button>
       <button class="tab-btn" data-tab="medical-records">Medical Records</button>
@@ -65,9 +62,7 @@
     <!-- APPOINTMENTS -->
     <div class="tab-content" id="appointments" style="display:none;">
       <h2>Appointments</h2>
-
       <button id="show-form-btn" class="btn btn-primary">+ Book Appointment</button>
-
       <div id="booking-form" style="display:none;">
         <h3 class="sub-heading">New Appointment</h3>
         <div class="form-field">
@@ -103,9 +98,7 @@
       <h3 class="sub-heading">Upcoming Appointments</h3>
       <table class="data-table">
         <thead>
-          <tr>
-            <th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th><th>Action</th>
-          </tr>
+          <tr><th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th><th>Action</th></tr>
         </thead>
         <tbody id="upcoming-tbody">
           <tr>
@@ -122,17 +115,11 @@
       <h3 class="sub-heading">Past Appointments</h3>
       <table class="data-table">
         <thead>
-          <tr>
-            <th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th>
-          </tr>
+          <tr><th>Date</th><th>Time</th><th>Doctor</th><th>Reason</th><th>Complaints / Symptoms</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>20 Feb 2026</td><td>10:00 AM</td><td>Dr. Lee</td><td>Consultation</td><td>Headache, high BP</td><td>Completed</td>
-          </tr>
-          <tr>
-            <td>10 Jan 2026</td><td>02:00 PM</td><td>Dr. Khan</td><td>Check-up</td><td>Routine check</td><td>Completed</td>
-          </tr>
+          <tr><td>20 Feb 2026</td><td>10:00 AM</td><td>Dr. Lee</td><td>Consultation</td><td>Headache, high BP</td><td>Completed</td></tr>
+          <tr><td>10 Jan 2026</td><td>02:00 PM</td><td>Dr. Khan</td><td>Check-up</td><td>Routine check</td><td>Completed</td></tr>
         </tbody>
       </table>
     </div>
@@ -146,7 +133,7 @@
         <thead>
           <tr><th>Date</th><th>Diagnosis</th><th>Doctor</th><th>Notes</th></tr>
         </thead>
-        <tbody>
+        <tbody id="diag-history-tbody">
           <tr><td>20 Feb 2026</td><td>Hypertension</td><td>Dr. Lee</td><td>Blood pressure elevated. Monitor weekly.</td></tr>
           <tr><td>10 Jan 2026</td><td>Routine Check</td><td>Dr. Khan</td><td>All vitals normal.</td></tr>
         </tbody>
@@ -157,7 +144,7 @@
         <thead>
           <tr><th>Date</th><th>Medicine</th><th>Dosage</th><th>Duration</th><th>Doctor</th></tr>
         </thead>
-        <tbody>
+        <tbody id="presc-tbody">
           <tr><td>20 Feb 2026</td><td>Amlodipine</td><td>5mg once daily</td><td>30 days</td><td>Dr. Lee</td></tr>
         </tbody>
       </table>
@@ -177,21 +164,19 @@
     <!-- BILLING -->
     <div class="tab-content" id="billing" style="display:none;">
       <h2>Billing and Payments</h2>
+      <p style="font-size:13px; color:#888; margin-bottom:12px;">Billing is managed by the Admin. Changes will reflect here.</p>
       <table class="data-table">
         <thead>
           <tr><th>Invoice ID</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr>
         </thead>
-        <tbody>
-          <tr><td>INV-101</td><td>20 Feb 2026</td><td>Consultation Dr. Lee</td><td>$80.00</td><td class="status-paid">Paid</td></tr>
-          <tr><td>INV-102</td><td>18 Feb 2026</td><td>Lab Tests</td><td>$150.00</td><td class="status-unpaid">Unpaid</td></tr>
-          <tr><td>INV-103</td><td>10 Jan 2026</td><td>Routine Check-up</td><td>$60.00</td><td class="status-paid">Paid</td></tr>
-        </tbody>
+        <tbody id="billing-tbody"></tbody>
       </table>
     </div>
 
   </main>
 
   <script src="patient.js"></script>
+  <script src="reset.js"></script>
 
 </body>
 </html>
