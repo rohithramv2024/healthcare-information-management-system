@@ -2,16 +2,11 @@
 // role.js — role.html
 // =============================================
 
+var roleCards = document.querySelectorAll('.role-card');
 
-// --- SAVE SELECTED ROLE TO SESSIONSTORAGE ---
-// When a role card is clicked, save the role name
-// to sessionStorage before navigating to that dashboard.
-
-const roleCards = document.querySelectorAll('.role-card');
-
-roleCards.forEach(function(card) {
-  card.addEventListener('click', function() {
-    const roleName = card.querySelector('h2').textContent;
+for (var i = 0; i < roleCards.length; i++) {
+  roleCards[i].addEventListener('click', function() {
+    var roleName = this.querySelector('h2').textContent;
     sessionStorage.setItem('selectedRole', roleName);
   });
-});
+}
