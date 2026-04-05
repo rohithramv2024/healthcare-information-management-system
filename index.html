@@ -11,7 +11,7 @@
 
   <!-- HEADER -->
   <header id="site-header">
-    <div class="brand-name"><img src="images/icon1.png" alt="HIMS" class="brand-icon" />HIMS</div>
+    <div class="brand-name">HIMS</div>
     <nav>
       <ul class="nav-list">
         <li><a href="#home"     class="nav-link">Home</a></li>
@@ -25,7 +25,7 @@
 
 
   <!-- HERO -->
-  <section id="home" class="hero-section">
+  <section id="home" class="hero-section" style="background-image: url('images/hero.jpg');">
     <h1 class="hero-title">Healthcare Information Management System</h1>
     <p class="hero-tagline">Smarter data. Better care. All in one place.</p>
     <a href="role.html"  class="btn btn-primary">Get Started</a>
@@ -36,40 +36,71 @@
   <!-- ABOUT -->
   <section id="about">
     <h2 class="section-title">About HIMS</h2>
-    <p class="section-subtitle">Who we are and what we do</p>
     <p>HIMS is a digital platform that centralises patient records, streamlines clinical operations, and supports data-driven decisions across hospitals and clinics.</p>
     <p>Our mission is to reduce administrative burden so healthcare professionals can focus on delivering exceptional patient care.</p>
   </section>
 
 
   <!-- FEATURES -->
-  <section id="features">
-    <h2 class="section-title">Core Features</h2>
-    <p class="section-subtitle">Everything your facility needs in one system</p>
+  <section class="features-section">
 
-    <ul class="features-grid">
+      <div class="header-area">
+          <h1>Core Features</h1>
+          <p>Everything your facility needs in one system</p>
+      </div>
 
-      <li class="feature-card">
-        <h3 class="feature-title">Patient Records Management</h3>
-        <p>Securely store and retrieve complete patient histories including diagnoses, prescriptions, and lab results.</p>
-      </li>
+      <div class="cards-wrapper">
 
-      <li class="feature-card">
-        <h3 class="feature-title">Appointment Scheduling</h3>
-        <p>Automate bookings, reminders, and calendar management across departments and practitioners.</p>
-      </li>
+          <!-- Card 1 -->
+          <div class="feature-card" style="background-image: url('images/feature1.jpg');">
+              <div class="overlay"></div>
+              <div class="card-content">
+                  <h2>Patient Records Management</h2>
+                  <p>
+                      <b>Securely store and retrieve complete patient histories
+                      including diagnoses, prescriptions, and lab results.</b>
+                  </p>
+              </div>
+          </div>
 
-      <li class="feature-card">
-        <h3 class="feature-title">Billing & Invoicing</h3>
-        <p>Simplify the revenue cycle with automated billing, insurance claims, and compliance checks.</p>
-      </li>
+          <!-- Card 2 -->
+          <div class="feature-card" style="background-image: url('images/feature2.jpg');">
+              <div class="overlay"></div>
+              <div class="card-content">
+                  <h2>Appointment Scheduling</h2>
+                  <p>
+                      <b>Automate bookings, reminders, and calendar management
+                      across departments and practitioners.</b>
+                  </p>
+              </div>
+          </div>
 
-      <li class="feature-card">
-        <h3 class="feature-title">Analytics & Reporting</h3>
-        <p>Track performance indicators and patient outcomes through easy-to-read dashboards and reports.</p>
-      </li>
+          <!-- Card 3 -->
+          <div class="feature-card" style="background-image: url('images/feature3.jpg');">
+              <div class="overlay"></div>
+              <div class="card-content">
+                  <h2>Billing & Invoicing</h2>
+                  <p>
+                      <b>Simplify the revenue cycle with automated billing,
+                      insurance claims, and compliance checks.</b>
+                  </p>
+              </div>
+          </div>
 
-    </ul>
+          <!-- Card 4 -->
+          <div class="feature-card" style="background-image: url('images/feature4.jpg');">
+              <div class="overlay"></div>
+              <div class="card-content">
+                  <h2>Analytics & Reporting</h2>
+                  <p>
+                      <b>Track performance indicators and patient outcomes
+                      through easy-to-read dashboards and reports.</b>
+                  </p>
+              </div>
+          </div>
+
+      </div>
+
   </section>
 
 
@@ -89,7 +120,7 @@
 
 
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class = "contact-style">
     <h2 class="section-title">Contact Us</h2>
     <p class="section-subtitle">Get in touch or request a demo</p>
 
@@ -129,7 +160,6 @@
 
   <!-- FOOTER -->
   <footer id="site-footer">
-
     <p>&copy; 2026 Healthcare Information Management System. All rights reserved.</p>
     <p>
       <a href="/privacy" class="footer-nav-link">Privacy Policy</a> |
@@ -138,6 +168,5 @@
     </p>
   </footer>
 
-  <script src="main.js"></script>
 </body>
 </html>

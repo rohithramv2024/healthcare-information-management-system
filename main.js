@@ -20,9 +20,8 @@ if (contactForm) {
       return;
     }
 
-    // Regex email format check
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Basic email format check
+    if (!email.includes('@') || !email.includes('.')) {
       showFormMessage('Please enter a valid email address.', 'error');
       return;
     }

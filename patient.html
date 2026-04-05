@@ -10,7 +10,7 @@
 <body>
 
   <nav class="top-navbar">
-    <div class="navbar-brand"><img src="images/icon2.png" alt="" class="brand-icon" />HIMS — Patient</div>
+    <div class="navbar-brand">HIMS — Patient</div>
     <div class="navbar-links">
       <button id="reset-btn" class="nav-btn nav-btn-reset">Reset Data</button>
       <a href="role.html"  class="nav-btn">Switch Role</a>
@@ -38,7 +38,7 @@
         <div class="info-row"><span class="info-label">Gender</span><span class="info-value">Male</span></div>
         <div class="info-row"><span class="info-label">Date of Birth</span><span class="info-value">12 March 1980</span></div>
         <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+1 800 555 0101</span></div>
-        <div class="info-row"><span class="info-label">Email</span><span class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea4a1a6a0e0bda3a7baa68eaba3afa7a2e0ada1a3">[email&#160;protected]</a></span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value">john.smith@email.com</span></div>
         <div class="info-row"><span class="info-label">Address</span><span class="info-value">12 Elm Street, San Francisco, CA</span></div>
         <div class="info-row"><span class="info-label">Blood Group</span><span class="info-value">O+</span></div>
         <div class="info-row"><span class="info-label">Emergency Contact</span><span class="info-value">Jane Smith +1 800 555 0202</span></div>
@@ -53,7 +53,7 @@
         <div class="info-row"><span class="info-label">Specialty</span><span class="info-value">General Physician</span></div>
         <div class="info-row"><span class="info-label">Department</span><span class="info-value">Internal Medicine</span></div>
         <div class="info-row"><span class="info-label">Phone</span><span class="info-value">+1 800 555 0303</span></div>
-        <div class="info-row"><span class="info-label">Email</span><span class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8eeafca0e2ebebcee6e7e3fda0e1fce9">[email&#160;protected]</a></span></div>
+        <div class="info-row"><span class="info-label">Email</span><span class="info-value">dr.lee@hims.org</span></div>
         <div class="info-row"><span class="info-label">Available Days</span><span class="info-value">Monday, Wednesday, Friday</span></div>
         <div class="info-row"><span class="info-label">Clinic Room</span><span class="info-value">Room 204, Block B</span></div>
       </div>
@@ -167,4 +167,16 @@
       <p style="font-size:13px; color:#888; margin-bottom:12px;">Billing is managed by the Admin. Changes will reflect here.</p>
       <table class="data-table">
         <thead>
-          <tr><th>Invoice ID</th><th>Date</th><t
+          <tr><th>Invoice ID</th><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+        </thead>
+        <tbody id="billing-tbody"></tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script src="patient.js"></script>
+  <script src="reset.js"></script>
+
+</body>
+</html>
