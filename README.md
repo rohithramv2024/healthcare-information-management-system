@@ -108,6 +108,15 @@ No npm packages, no frameworks, no backend, and no installation required.
 
 This project uses the browser's **localStorage** to persist data with no backend or database required.
 
+| Key | Description |
+|-----|-------------|
+| `hims_admin_patients` | All patient records |
+| `hims_admin_doctors` | All doctor records |
+| `hims_admin_invoices` | All billing invoices |
+| `hims_appointments` | Patient booked appointments |
+| `hims_appt_statuses` | Doctor appointment completion statuses |
+| `hims_diagnoses_[id]` | Diagnosis records per patient |
+| `hims_prescriptions_[id]` | Prescription records per patient |
 
 > Data persists until manually cleared or reset via the Reset Data button in each module's navbar.
 
@@ -141,3 +150,12 @@ Other browsers may work but have not been tested.
 
 See `HIMS-Development Log.docx` for the full version-based milestone summary.
 
+| Version | Description |
+|---------|-------------|
+| 1.0.0 | Static landing page |
+| 1.1.0 | Role-based layout |
+| 1.2.0 | Patient module UI |
+| 1.3.0 | JavaScript and DOM integration |
+| 1.4.0 | Patient module functionality |
+| 1.5.0 | Doctor module |
+| 1.6.0 | Admin module |
